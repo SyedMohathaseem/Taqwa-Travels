@@ -1177,27 +1177,24 @@ ul {
   width: 40px;
   height: 40px;
   border-radius: 8px;
-  border: 1px solid rgba(200, 169, 106, 0.15);
+  background: var(--gold-gradient);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: var(--transition);
+  box-shadow: 0 6px 20px rgba(200, 169, 106, 0.3);
 }
 
 .footer-social a:hover {
-  background: var(--gold-gradient);
-  border-color: transparent;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(200, 169, 106, 0.4);
 }
 
 .footer-social a svg {
   width: 18px;
   height: 18px;
-  fill: var(--text-muted);
-  transition: var(--transition);
-}
-
-.footer-social a:hover svg {
   fill: var(--text-dark);
+  transition: var(--transition);
 }
 
 .footer-col h4 {
