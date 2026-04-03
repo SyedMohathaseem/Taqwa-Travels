@@ -486,6 +486,9 @@ ul {
   transition: var(--transition);
   position: relative;
   overflow: hidden;
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 
 .service-card::before {
@@ -562,6 +565,8 @@ ul {
   overflow: hidden;
   border: 1px solid rgba(200, 169, 106, 0.08);
   transition: var(--transition);
+  display: flex;
+  flex-direction: column;
 }
 
 .package-card:hover {
@@ -574,6 +579,19 @@ ul {
   position: relative;
   height: 240px;
   overflow: hidden;
+}
+
+.package-img.full-img {
+  height: auto;
+  background: transparent;
+  display: block;
+}
+
+.package-img.full-img img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
 }
 
 .package-img img {
@@ -603,6 +621,9 @@ ul {
 
 .package-info {
   padding: 28px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .package-info h3 {
@@ -644,7 +665,8 @@ ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 18px;
+  margin-top: auto;
+  padding-top: 18px;
 }
 
 .package-price .price {
