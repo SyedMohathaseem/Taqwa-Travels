@@ -224,18 +224,13 @@ ul {
   gap: 12px;
 }
 
-.navbar-brand .logo-icon {
-  width: 42px;
-  height: 42px;
-  background: var(--gold-gradient);
+.navbar-brand .logo-img {
+  width: 60px;
+  height: 60px;
   border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Cinzel', serif;
-  font-weight: 800;
-  font-size: 1.3rem;
-  color: var(--text-dark);
+  object-fit: contain;
+  background: transparent;
+  mix-blend-mode: lighten;
 }
 
 .navbar-brand .brand-text {
@@ -416,16 +411,20 @@ ul {
   margin-bottom: 24px;
   letter-spacing: 2px;
   line-height: 1.2;
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.6);
 }
 
 .hero p {
   font-size: 1.15rem;
-  color: var(--text-muted);
+  color: #e0e0e0;
   margin-bottom: 44px;
   max-width: 620px;
   margin-left: auto;
   margin-right: auto;
   line-height: 1.8;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  font-weight: 400;
+  letter-spacing: 0.3px;
 }
 
 .hero-buttons {
@@ -936,9 +935,12 @@ ul {
 
 .review-image-card img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
   display: block;
   transition: transform 0.6s ease;
+  cursor: pointer;
 }
 
 .review-image-card:hover img {
@@ -1550,6 +1552,7 @@ ul {
 
   .review-image-card img {
     height: auto;
+    object-fit: cover;
   }
 
   /* Booking CTA Mobile */
@@ -1815,6 +1818,92 @@ ul {
   opacity: 0;
   visibility: hidden;
   transition: var(--transition);
+}
+
+/* ===== LIGHTBOX FULLSCREEN ===== */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  cursor: pointer;
+  padding: 20px;
+}
+
+.lightbox-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  transform: scale(0.85);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: default;
+}
+
+.lightbox-overlay.active .lightbox-img {
+  transform: scale(1);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  z-index: 10001;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: rotate(90deg);
+}
+
+.lightbox-close svg {
+  width: 22px;
+  height: 22px;
+}
+
+@media (max-width: 768px) {
+  .lightbox-img {
+    max-width: 95vw;
+    max-height: 85vh;
+    border-radius: 8px;
+  }
+
+  .lightbox-close {
+    top: 14px;
+    right: 14px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .lightbox-close svg {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 .nav-overlay.active {

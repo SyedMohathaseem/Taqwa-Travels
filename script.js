@@ -231,3 +231,52 @@ window.addEventListener('scroll', () => {
     }
   }
 });
+
+// ===== IMAGE LIGHTBOX (FULLSCREEN VIEWER) =====
+const lightboxOverlay = document.getElementById('lightbox-overlay');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxClose = document.getElementById('lightbox-close');
+
+function openLightbox(src) {
+  lightboxImg.src = src;
+  lightboxOverlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  lightboxOverlay.classList.remove('active');
+  document.body.style.overflow = '';
+  setTimeout(() => {
+    lightboxImg.src = '';
+  }, 400);
+}
+
+// Click on any review image to open lightbox
+document.querySelectorAll('.review-image-card img').forEach(img => {
+  img.addEventListener('click', () => {
+    openLightbox(img.src);
+  });
+});
+
+// Close lightbox
+if (lightboxClose) {
+  lightboxClose.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeLightbox();
+  });
+}
+
+if (lightboxOverlay) {
+  lightboxOverlay.addEventListener('click', (e) => {
+    if (e.target === lightboxOverlay) {
+      closeLightbox();
+    }
+  });
+}
+
+// Close on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && lightboxOverlay.classList.contains('active')) {
+    closeLightbox();
+  }
+});
