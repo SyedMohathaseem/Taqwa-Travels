@@ -516,14 +516,43 @@ ul {
   transition: var(--transition);
 }
 
-.service-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(200, 169, 106, 0.2);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(200, 169, 106, 0.05);
+/* Base feature card hover (non-clickable) */
+/* Hover effects completely removed for static cards */
+
+/* Clickable Service Card Enhancements */
+a.service-card {
+  cursor: pointer;
+  z-index: 1;
+  padding-bottom: 64px; /* Make room for explore text */
 }
 
-.service-card:hover::before {
+a.service-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(200, 169, 106, 0.3);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(200, 169, 106, 0.1);
+}
+
+a.service-card::after {
+  content: 'Explore \2192';
+  display: block;
+  position: absolute;
+  bottom: 25px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: var(--gold-start);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: var(--transition);
+}
+
+a.service-card:hover::after {
   opacity: 1;
+  transform: translateY(0);
 }
 
 .service-icon {
@@ -545,11 +574,11 @@ ul {
   transition: var(--transition);
 }
 
-.service-card:hover .service-icon {
+a.service-card:hover .service-icon {
   background: var(--gold-gradient);
 }
 
-.service-card:hover .service-icon svg {
+a.service-card:hover .service-icon svg {
   fill: var(--text-dark);
 }
 
@@ -1715,6 +1744,10 @@ ul {
 
   .service-card {
     padding: 32px 24px;
+  }
+  
+  a.service-card {
+    padding-bottom: 54px;
   }
 
   /* Packages Mobile */
